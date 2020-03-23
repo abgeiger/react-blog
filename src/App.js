@@ -1,4 +1,5 @@
 import React from 'react';
+import WritePost from './components/WritePost';
 import './App.css';
 import PostList from './components/PostList';
 
@@ -22,20 +23,15 @@ class App extends React.Component {
           content: 'Content of the third post.',
       },
     ],
+    // Boolean to toggle between Post List and Write a Post pages
     isWritingPost: false,
-    newPost: {
-      title: '',
-      content: '',
-    },
   }
-
-  // Function to create a new post
-
 
   render () {
     return (
       <div className="App">
         <button>{this.state.isWritingPost ? "View Posts" : "Write Post"}</button>
+        <WritePost />
         <PostList posts={this.state.blogPosts} />
       </div>
     );
