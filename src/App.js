@@ -4,6 +4,7 @@ import PostList from './components/PostList';
 
 class App extends React.Component {
   state = {
+    // Hardcoded Data
     blogPosts: [
       {
           id: 1,
@@ -21,13 +22,20 @@ class App extends React.Component {
           content: 'Content of the third post.',
       },
     ],
-    isCreatingPost: false,
+    isWritingPost: false,
+    newPost: {
+      title: '',
+      content: '',
+    },
   }
+
+  // Function to create a new post
+
 
   render () {
     return (
       <div className="App">
-        <button>{this.state.isCreatingPost ? "View Posts" : "Write Post"}</button>
+        <button>{this.state.isWritingPost ? "View Posts" : "Write Post"}</button>
         <PostList posts={this.state.blogPosts} />
       </div>
     );
