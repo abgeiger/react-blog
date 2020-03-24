@@ -9,9 +9,25 @@ export class WritePost extends Component {
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
+    onSubmit = (e) => {
+        e.preventDefault();
+
+        const newPost = {
+            title: this.state.title,
+            content: this.state.content,
+        }
+
+        this.props.createPost(newPost);
+
+        this.setState({
+            title: '',
+            content: '',
+        });
+    }
+
     render() {
         return (
-            <div>
+            <form onSubmit={this.onSubmit}>
                 <input
                     type="text"
                     name="title"
@@ -26,7 +42,15 @@ export class WritePost extends Component {
                     value={this.state.content}
                     onChange={this.onChange}
                 />
-            </div>
+                <input
+                    type="submit"
+                    value="Submit"
+                />
+                <br />
+                {this.state.title}
+                <br />
+                {this.state.content}
+            </form>
         )
     }
 }

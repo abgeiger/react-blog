@@ -27,11 +27,16 @@ class App extends React.Component {
     isWritingPost: false,
   }
 
+  // Function to create a post
+  createPost = (newPost) => {
+    this.setState( {blogPosts: [...this.state.blogPosts, newPost] })
+  }
+
   render () {
     return (
       <div className="App">
         <button>{this.state.isWritingPost ? "View Posts" : "Write Post"}</button>
-        <WritePost />
+        <WritePost createPost={this.createPost} />
         <PostList posts={this.state.blogPosts} />
       </div>
     );
