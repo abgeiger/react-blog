@@ -29,15 +29,21 @@ class App extends React.Component {
 
   // Function to create a post
   createPost = (newPost) => {
-    this.setState( {blogPosts: [...this.state.blogPosts, newPost] })
+    this.setState( {blogPosts: [...this.state.blogPosts, newPost] });
+    // Shows Post List after new post is submitted
+    this.setState({ isWritingPost: false });
+  }
+
+  toggleWritePost = () => {
+    this.setState({ isWritingPost: !this.state.isWritingPost });
   }
 
   render () {
     return (
       <div className="App">
-        <button>{this.state.isWritingPost ? "View Posts" : "Write Post"}</button>
-        <WritePost createPost={this.createPost} />
-        <PostList posts={this.state.blogPosts} />
+        <button onClick={this.toggleWritePost} >{this.state.isWritingPost ? "View Posts" : "Write Post"}</button>
+        { this.state.isWritingPost ? <WritePost createPost={this.createPost} /> : null }
+        { this.state.isWritingPost ? null : <PostList posts={this.state.blogPosts} /> }
       </div>
     );
   }
